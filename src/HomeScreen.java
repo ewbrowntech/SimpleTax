@@ -1,3 +1,4 @@
+import java.nio.file.FileSystemNotFoundException;
 import java.util.Scanner;
 
 /**
@@ -26,15 +27,15 @@ public class HomeScreen {
 							 + "[2] Generate tax summary\n");	// as we code more features
 			termIn = input.nextLine();
 			termIn = termIn.trim();					// Trims leading and trailing whitespace
-		
+			
 			if (input.equals(option1)) {
-				// Call messenger
+				System.exit(0);
 			}
 			if (input.equals(option2)) {
-				// Generate tax summary
+				System.exit(0);
 			}
 			else {
-				System.out.println("");
+				this.welcomePrompt();
 			}
 		}
 
