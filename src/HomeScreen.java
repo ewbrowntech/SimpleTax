@@ -1,6 +1,3 @@
-import java.nio.file.FileSystemNotFoundException;
-import java.util.Scanner;
-
 /**
  * HomeScreen.Java
  * 
@@ -15,26 +12,22 @@ public class HomeScreen {
 	public void welcomePrompt()
 			throws java.io.IOException {
 			
-			String termIn = "";
-			Scanner input = new Scanner(System.in);
+			char input;
 		
 			// Welcome and options screen
-			String option1 = "1";
-			String option2 = "2";
-			System.out.println("Welcome to SimpleTax!\n\n Please select "
-					+ "from the options below.\n");
+			System.out.println("Please select from the options below.\n");
 			System.out.println("[1] Go to messenger\n"			// Additional functionality to be added
 							 + "[2] Generate tax summary\n");	// as we code more features
-			termIn = input.nextLine();
-			termIn = termIn.trim();					// Trims leading and trailing whitespace
+			input = (char) System.in.read();
 			
-			if (input.equals(option1)) {
-				System.exit(0);
+			if (input == '1') {
+				System.exit(0);						// Go to messenger
 			}
-			if (input.equals(option2)) {
-				System.exit(0);
+			if (input == '2') {
+				System.exit(0);						// Generate tax summary
 			}
 			else {
+				System.out.println("Please try again!");
 				this.welcomePrompt();
 			}
 		}
