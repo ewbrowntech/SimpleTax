@@ -7,9 +7,9 @@ import java.util.Scanner;
  * Edit this for robustness.
  *
  * @author   Ethan Brown (ewb0020@auburn.edu)
- * @version  17 NOV 21
+ * @version  21 NOV 21
  */
-public class SendMessage {
+public class Messenger {
 	
 	public void draftMessage()
 			throws java.io.IOException {
@@ -25,7 +25,7 @@ public class SendMessage {
 				messageInput = messageInput.replaceAll("\\s", "");
 			
 				for(int i = 0; i < reservedUsernames.length; i++) { // To be added in main class
-					if(messageInput = reservedUsernames[i]) {
+					if(messageInput.equals(reservedUsernames[i])) {
 						userExists = true;
 						break;
 					}
