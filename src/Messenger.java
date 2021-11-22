@@ -23,16 +23,6 @@ public class Messenger {
 				System.out.println("Enter recipient: ");
 				messageInput = input.nextLine();
 				messageInput = messageInput.replaceAll("\\s", "");
-			
-				for(int i = 0; i < reservedUsernames.length; i++) { // To be added in main class
-					if(messageInput.equals(reservedUsernames[i])) {
-						userExists = true;
-						break;
-					}
-					else {
-						System.out.println("\nSpecified user does not exist. Please try again.\n");
-					}
-				}
 			}
 			newMessage.setRecipient(messageInput);	// If user exists, message will be sent.
 			
