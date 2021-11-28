@@ -49,28 +49,38 @@ public class Messenger {
 				System.out.println("Enter recipient: ");
 				messageInput = input2.nextLine();
 				messageInput = messageInput.replaceAll("\\s", "");		// Clears all whitespace
-				messageInput = messageInput.replaceAll("\n", "");		// Clears newline
+				messageInput = messageInput.replace("\n", "");		// Clears newline
 				if (messageInput == "") {
 					System.out.println("No input detected. Please try again!");
 				}
+				else if (messageInput.equals("Q")) {
+					break;
+				}
 			} while (messageInput == "");
+			if (messageInput.equals("Q")) {
+				messengerPrompt();
+			}
 			newMessage.setRecipient(messageInput);		// If user exists, message will be sent.
 			
 			do {
-				messageInput = "";
 				System.out.println("Enter message title: ");
 				messageInput = input2.nextLine();
 				messageInput = messageInput.trim();		// Trims leading and trailing whitespace
 				messageInput = messageInput.replaceAll("\n", "");
+				if (messageInput == "") {
+					System.out.println("No input detected. Please try again!");
+				}
 			} while (messageInput == "");
 			newMessage.setTitle(messageInput);		
 			
 			do {
-				messageInput = "";
 				System.out.println("Enter your message: ");
 				messageInput = input2.nextLine();
 				messageInput = messageInput.trim();		// Trims leading and trailing whitespace
 				messageInput = messageInput.replaceAll("\n", "");
+				if (messageInput == "") {
+					System.out.println("No input detected. Please try again!");
+				}
 			} while (messageInput == "");
 			newMessage.setBody(messageInput);
 	}
