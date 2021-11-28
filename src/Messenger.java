@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Allows users to send and receive messages.
  *
  * @author   Ethan Brown (ewb0020@auburn.edu)
- * @version  21 NOV 21
+ * @version  28 NOV 21
  */
 public class Messenger {
 	
@@ -38,29 +38,40 @@ public class Messenger {
 	public void draftMessage()
 			throws java.io.IOException {
 			
-			String messageInput = "";
+			String messageInput;
 			Scanner input2 = new Scanner(System.in);
-			
+			input2.nextLine();						// Clears input buffer, was causing first loop to repeat twice
 			message newMessage = new message();
 			Boolean userExists = false;
-			System.out.println("Enter recipient: ");
-			messageInput = input2.nextLine();
-			messageInput = messageInput.replaceAll("\\s", "");
-			/*while (!userExists) {
+
+			do {
+				messageInput = "";
 				System.out.println("Enter recipient: ");
 				messageInput = input2.nextLine();
-				messageInput = messageInput.replaceAll("\\s", "");
-			} */
-			newMessage.setRecipient(messageInput);	// If user exists, message will be sent.
+				messageInput = messageInput.replaceAll("\\s", "");		// Clears all whitespace
+				messageInput = messageInput.replaceAll("\n", "");		// Clears newline
+				if (messageInput == "") {
+					System.out.println("No input detected. Please try again!");
+				}
+			} while (messageInput == "");
+			newMessage.setRecipient(messageInput);		// If user exists, message will be sent.
 			
-			System.out.println("Enter message title: ");
-			messageInput = input2.nextLine();
-			messageInput = messageInput.trim();		// Trims leading and trailing whitespace
+			do {
+				messageInput = "";
+				System.out.println("Enter message title: ");
+				messageInput = input2.nextLine();
+				messageInput = messageInput.trim();		// Trims leading and trailing whitespace
+				messageInput = messageInput.replaceAll("\n", "");
+			} while (messageInput == "");
 			newMessage.setTitle(messageInput);		
 			
-			System.out.println("Enter your message: ");
-			messageInput = input2.nextLine();
-			messageInput = messageInput.trim();
+			do {
+				messageInput = "";
+				System.out.println("Enter your message: ");
+				messageInput = input2.nextLine();
+				messageInput = messageInput.trim();		// Trims leading and trailing whitespace
+				messageInput = messageInput.replaceAll("\n", "");
+			} while (messageInput == "");
 			newMessage.setBody(messageInput);
 	}
 }
