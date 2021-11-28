@@ -21,7 +21,8 @@ public class HomeScreen {
 			input = (char) System.in.read();
 			
 			if (input == '1') {
-				System.exit(0);						// Go to messenger
+				Messenger messenger = new Messenger();
+				messenger.messengerPrompt();
 			}
 			if (input == '2') {
 				System.exit(0);						// Generate tax summary

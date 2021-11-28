@@ -14,8 +14,8 @@ public class SimpleTax {
 	public static void main(String[] args) 
 			throws java.io.IOException {
 		
-			Userbase u = new Userbase();
 			System.out.println("Welcome to SimpleTax!\n");
+			Userbase u = new Userbase();
 		    HomeScreen h = new HomeScreen();
 		    h.welcomePrompt();		// Calls up the homescreen, with its options
 		    System.exit(0);
