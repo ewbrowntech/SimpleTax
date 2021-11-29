@@ -102,7 +102,7 @@ public class Messenger {
 					File file = new File("messages.txt");
 					BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
 					writer.append(newMessage.getRecipient() + "\n");
-					writer.append(String.valueOf(newMessage.getID())); // Changes integer ID to string
+					writer.append(newMessage.getID()); // Changes integer ID to string
 					writer.append("\n" + newMessage.getTitle() + "\n");
 					writer.append(newMessage.getBody() + "\n\n");
 			        writer.flush();
@@ -139,6 +139,8 @@ public class Messenger {
 	             message1.setTitle(fileScan.nextLine());
 	             message1.setBody(fileScan.nextLine());
 	             fileScan.nextLine();
+	             
+	             messages.add(message1);
 	        }
 	    }
 	    int inbox = messages.size();
@@ -154,7 +156,7 @@ public class Messenger {
 	    
 	    boolean idHit = false;
 	    while (idHit == false) {
-		    System.out.println("Enter the ID of the message you wish to view or Q to exit:");
+		    System.out.println("\nEnter the ID of the message you wish to view or Q to exit:");
 		    String input = scan.nextLine();
 		    if (input.equals("Q")) {
 		    	messengerPrompt(); 				// Go back to the messenger
@@ -163,7 +165,7 @@ public class Messenger {
 		    	continue;						// No entry. Repeat the loop.
 		    }
 	    	for (message message : messages) {
-	    		if (input.equals(Integer.toString(message.getID()))) {
+	    		if (input.equals(message.getID())) {
 	    			System.out.println("\n" + message.getTitle() + "\n\n" + message.getBody() + 
 	    					"\n\nEnter Q to return to inbox:");
 	    			break;
@@ -178,7 +180,7 @@ class message {
 	String recipient = "";
 	String title = "";
 	String body = "";
-	int messageID;
+	String messageID;
 		
 	public void setRecipient(String recipientIn) {
 		this.recipient = recipientIn;
@@ -205,14 +207,14 @@ class message {
 	}
 	
 	public void generateID() {
-		this.messageID = ThreadLocalRandom.current().nextInt(1, 500 + 1);
+		this.messageID = Integer.toString(ThreadLocalRandom.current().nextInt(1, 500 + 1));
 	}
 	
 	public void setID(String idIn) {
-		this.messageID = Integer.valueOf(idIn);
+		this.messageID = idIn;
 	}
 	
-	public int getID() {
+	public String getID() {
 		return this.messageID;
 	}
 }
