@@ -1,4 +1,9 @@
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * Messenger.java 
@@ -6,7 +11,7 @@ import java.util.Scanner;
  * Allows users to send and receive messages.
  *
  * @author   Ethan Brown (ewb0020@auburn.edu)
- * @version  28 NOV 21
+ * @version  29 NOV 21
  */
 public class Messenger {
 	
@@ -37,7 +42,7 @@ public class Messenger {
 	 */
 	public void draftMessage()
 			throws java.io.IOException {
-			
+
 			String messageInput;
 			Scanner input2 = new Scanner(System.in);
 			input2.nextLine();						// Clears input buffer, was causing first loop to repeat twice
@@ -83,7 +88,28 @@ public class Messenger {
 				}
 			} while (messageInput == "");
 			newMessage.setBody(messageInput);
+			newMessage.generateID();
+			
+			System.out.println("Test");
+			try
+			    {
+					File file = new File("messages.txt");
+		            file.createNewFile();
+					BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
+					writer.append(String.valueOf(newMessage.getID())); // Changes integer ID to string
+					writer.append(newMessage.getRecipient() + "\n");
+					writer.append(newMessage.getTitle() + "\n");
+					writer.append(newMessage.getBody() + "\n\n");
+			        writer.flush(); // empty buffer in the file
+			        writer.close(); // close the file to allow opening by others applications
+			    }
+			    catch(IOException ioException)
+			    {
+			        ioException.printStackTrace();
+			    }
+
 	}
+
 }
 
 class message {
@@ -96,11 +122,31 @@ class message {
 		this.recipient = recipientIn;
 	}
 	
+	public String getRecipient() {
+		return this.recipient;
+	}
+	
 	public void setTitle(String titleIn) {
 		this.title = titleIn;
 	}
 	
+	public String getTitle() {
+		return this.title;
+	}
+	
 	public void setBody(String bodyIn) {
 		this.body = bodyIn;
+	}
+	
+	public String getBody() {
+		return this.body;
+	}
+	
+	public void generateID() {
+		this.messageID = ThreadLocalRandom.current().nextInt(1, 500 + 1);
+	}
+	
+	public int getID() {
+		return this.messageID;
 	}
 }

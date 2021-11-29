@@ -15,9 +15,15 @@ public class user {
 	Double income;
 	Double deductions;
 	Double balance;
+	int[] messages = new int[] {};
+
 
 	public void setUsername(String usernameIn) {
 		this.username = usernameIn;
+	}
+	
+	public String getUsername() {
+		return this.username;
 	}
 
 	public void setPassword(String passwordIn) {
@@ -42,5 +48,14 @@ public class user {
 
 	public void setBalance(Double balanceIn) {
 		this.balance = balanceIn;
+	}
+	
+	public void addMessage(int messageIn) {
+		messages = Arrays.copyOf(messages, messages.length + 1);
+		messages[messages.length - 1] = messageIn;
+	}
+	
+	public int getMessageNumber() {
+		return messages.length;
 	}
 }
