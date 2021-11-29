@@ -1,7 +1,10 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -15,6 +18,9 @@ import java.io.IOException;
  */
 public class Messenger {
 	
+	/*
+	 * Driver for the messenger.
+	 */
 	public void messengerPrompt()
 			throws java.io.IOException {
 
@@ -25,7 +31,7 @@ public class Messenger {
 		//prints the character   
 
 		System.out.println("Welcome to the messenger. Please select from the options below.\n");
-		System.out.println("[1] Draft a message\n");
+		System.out.println("[1] Draft a message\n[2] Check messages\n");
 		
 		choice = (char) System.in.read();
 		
@@ -33,7 +39,7 @@ public class Messenger {
 			draftMessage();
 		}
 		else {
-		    System.exit(0);
+		    checkMessages();
 		}
 	}
 	
@@ -90,18 +96,17 @@ public class Messenger {
 			newMessage.setBody(messageInput);
 			newMessage.generateID();
 			
-			System.out.println("Test");
+			// Stores the message in messages.txt
 			try
 			    {
 					File file = new File("messages.txt");
-		            file.createNewFile();
 					BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
-					writer.append(String.valueOf(newMessage.getID())); // Changes integer ID to string
 					writer.append(newMessage.getRecipient() + "\n");
-					writer.append(newMessage.getTitle() + "\n");
+					writer.append(String.valueOf(newMessage.getID())); // Changes integer ID to string
+					writer.append("\n" + newMessage.getTitle() + "\n");
 					writer.append(newMessage.getBody() + "\n\n");
-			        writer.flush(); // empty buffer in the file
-			        writer.close(); // close the file to allow opening by others applications
+			        writer.flush();
+			        writer.close();
 			    }
 			    catch(IOException ioException)
 			    {
@@ -109,7 +114,64 @@ public class Messenger {
 			    }
 
 	}
+	
+	/*
+	 * Parses messages accessible to active user and stored in messages.txt into a 
+	 * list of message objects.
+	 */
+	public void checkMessages() throws IOException {
+		//----------Temporary----------
+		user activeUser = new user();
+		activeUser.setUsername("Client1");
+		//-----------------------------
+		
+		File file = new File("messages.txt");
+	    Scanner fileScan = new Scanner(file);
+	    List<message> messages = new ArrayList<message>();
 
+	    while (fileScan.hasNextLine()) {
+	    	String buffer = fileScan.nextLine(); // Avoid issue of skipping lines
+	        if (buffer.equals(activeUser.getUsername())) { // Message to user found
+	        	 message message1 = new message();
+	             message1.setRecipient(buffer);
+	             
+	             message1.setID(fileScan.nextLine());
+	             message1.setTitle(fileScan.nextLine());
+	             message1.setBody(fileScan.nextLine());
+	             fileScan.nextLine();
+	        }
+	    }
+	    int inbox = messages.size();
+	    
+	    /*
+	     * Check messages assigned to account.
+	     */
+	    Scanner scan = new Scanner(System.in);
+	    System.out.println("You have " + inbox + " messages.\n");
+	    for (message message : messages) {
+	        System.out.println(message.getID() + " - " + message.getTitle() + "\n");
+	    }
+	    
+	    boolean idHit = false;
+	    while (idHit == false) {
+		    System.out.println("Enter the ID of the message you wish to view or Q to exit:");
+		    String input = scan.nextLine();
+		    if (input.equals("Q")) {
+		    	messengerPrompt(); 				// Go back to the messenger
+		    }
+		    else if (input.equals("")) {
+		    	continue;						// No entry. Repeat the loop.
+		    }
+	    	for (message message : messages) {
+	    		if (input.equals(Integer.toString(message.getID()))) {
+	    			System.out.println("\n" + message.getTitle() + "\n\n" + message.getBody() + 
+	    					"\n\nEnter Q to return to inbox:");
+	    			break;
+	    		}
+	    	}
+	    	System.out.println("Invalid ID. Please try again.\n");
+	    }
+	}
 }
 
 class message {
@@ -144,6 +206,10 @@ class message {
 	
 	public void generateID() {
 		this.messageID = ThreadLocalRandom.current().nextInt(1, 500 + 1);
+	}
+	
+	public void setID(String idIn) {
+		this.messageID = Integer.valueOf(idIn);
 	}
 	
 	public int getID() {
