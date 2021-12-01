@@ -24,7 +24,7 @@ public class Login {
 		System.out.println("Please enter your username:");
 		username = input.nextLine();
 		username = username.replaceAll("\\s", "");		// Clears all whitespace
-		username = username.replace("\n", "");		// Clears newline
+		username = username.replace("\n", "");			// Clears newline
 		if (username.equals("")) {
 			loginPrompt();
 		}
@@ -35,7 +35,7 @@ public class Login {
 
 		boolean userExists = false;
 		while (fileScan.hasNextLine()) {
-		    String buffer = fileScan.nextLine(); // Avoid issue of skipping lines
+		    String buffer = fileScan.nextLine(); 		// Avoid issue of skipping lines
 		    if (buffer.equals(username)) {
 		    	userExists = true;
 		    	activeUser.setUsername(username);

@@ -16,26 +16,28 @@ public class HomeScreen {
 			// Welcome and options screen
 			System.out.println("Please select from the options below.");
 			System.out.println("[1] Go to messenger\n"			// Additional functionality to be added
-							 + "[2] Generate tax summary");	// as we code more features
-			Scanner input = new Scanner(System.in);
-	        char choice = input.next().charAt(0);
-			// char choice = (char) System.in.read();
-
-			if (choice == '1') {
-				Messenger messenger = new Messenger();
-				messenger.messengerPrompt();
-			}
-			else if (choice == '2') {
-				System.out.println("Debug1");
-				System.exit(0);						// Generate tax summary
-			}
-			else if (choice == 'Q') {
-				welcomePrompt();
-			}
-			else {
-				System.out.println("Please try again!");
-				this.welcomePrompt();
-			}
-		}
-
+						+ "[2] Generate tax summary");	// as we code more features
+			
+	        while(true) {
+	        	char choice = '0';
+	        	Scanner input = new Scanner(System.in);
+		        choice = input.next().charAt(0);
+	        	if (choice == '1') {
+					Messenger messenger = new Messenger();
+					messenger.messengerPrompt();
+				}
+				else if (choice == '2') {
+					GenerateTaxSummary g = new GenerateTaxSummary();
+					g.generateFile();
+					welcomePrompt();
+				}
+				else if (choice == 'Q') {
+					break;
+				}
+				else {
+					System.out.println("Please try again!");
+					welcomePrompt();
+				}
+	        }
+	}
 }

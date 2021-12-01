@@ -184,7 +184,6 @@ public class Messenger {
 		String username = fileScan.nextLine();
 		username = username.replace("\n", "");		// Clears newline
 		activeUser.setUsername(username);
-		System.out.println(activeUser.getUsername());
 		fileScan.close();
 	}
 }
