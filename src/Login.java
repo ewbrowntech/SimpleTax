@@ -17,7 +17,7 @@ public class Login {
 	
 	public void loginPrompt() throws FileNotFoundException {
 		
-		user activeUser = new user();
+		User activeUser = new User();
 		
 		String username;
 		Scanner input = new Scanner(System.in);

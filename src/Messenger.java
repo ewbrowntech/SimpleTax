@@ -18,7 +18,7 @@ import java.io.IOException;
  */
 public class Messenger {
 
-	user activeUser = new user();
+	User activeUser = new User();
 	
 	/*
 	 * Driver for the messenger.

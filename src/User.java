@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @author   Ethan Brown (ewb0020@auburn.edu)
  * @version  21 NOV 21
  */
-public class user {
+public class User {
 	String username;
 	String password;
 	Boolean isAdmin;
