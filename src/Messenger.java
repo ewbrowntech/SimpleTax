@@ -24,7 +24,7 @@ public class Messenger {
 	public void messengerPrompt()
 			throws java.io.IOException {  
 
-		System.out.println("\nWelcome to the messenger. Please select from the options below.\n");
+		System.out.println("\nWelcome to the messenger. Please select from the options below.");
 		System.out.println("[1] Draft a message\n[2] Check messages");
 		// char choice = (char) System.in.read();
 		char choice = 0;
@@ -148,14 +148,14 @@ public class Messenger {
 	     * Check messages assigned to account.
 	     */
 	    Scanner scan = new Scanner(System.in);
-	    System.out.println("You have " + inbox + " messages:");
+	    System.out.println("\nYou have " + inbox + " messages:");
 	    for (message message : messages) {
 	        System.out.println(message.getID() + " - " + message.getTitle());
 	    }
 	    
 	    boolean idHit = false;
 	    while (idHit == false) {
-		    System.out.println("\nEnter the ID of the message you wish to view or Q to exit:");
+		    System.out.println("Enter message ID or Q to exit:");
 		    String input = scan.nextLine();
 		    if (input.equals("Q")) {
 		    	messengerPrompt(); 				// Go back to the messenger
@@ -165,8 +165,7 @@ public class Messenger {
 		    }
 	    	for (message message : messages) {
 	    		if (input.equals(message.getID())) {
-	    			System.out.println("\n" + message.getTitle() + "\n\n" + message.getBody() + 
-	    					"\n");
+	    			System.out.println("\n" + message.getTitle() + "\n\n" + message.getBody());
 	    			break;
 	    		}
 	    	}

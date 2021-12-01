@@ -14,7 +14,7 @@ public class HomeScreen {
 			throws java.io.IOException {
 					
 			// Welcome and options screen
-			System.out.println("Please select from the options below.\n");
+			System.out.println("Please select from the options below.");
 			System.out.println("[1] Go to messenger\n"			// Additional functionality to be added
 							 + "[2] Generate tax summary");	// as we code more features
 			Scanner input = new Scanner(System.in);
