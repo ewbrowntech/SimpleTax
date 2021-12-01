@@ -12,22 +12,25 @@ public class HomeScreen {
 	
 	public void welcomePrompt()
 			throws java.io.IOException {
-			
-			char choice;
-		
+					
 			// Welcome and options screen
 			System.out.println("Please select from the options below.\n");
 			System.out.println("[1] Go to messenger\n"			// Additional functionality to be added
 							 + "[2] Generate tax summary\n");	// as we code more features
 			Scanner input = new Scanner(System.in);
-	        choice = input.next().charAt(0);
-			
+	        char choice = input.next().charAt(0);
+			// char choice = (char) System.in.read();
+
 			if (choice == '1') {
 				Messenger messenger = new Messenger();
 				messenger.messengerPrompt();
 			}
-			if (choice == '2') {
+			else if (choice == '2') {
+				System.out.println("Debug1");
 				System.exit(0);						// Generate tax summary
+			}
+			else if (choice == 'Q') {
+				welcomePrompt();
 			}
 			else {
 				System.out.println("Please try again!");

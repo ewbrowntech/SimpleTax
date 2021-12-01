@@ -22,24 +22,21 @@ public class Messenger {
 	 * Driver for the messenger.
 	 */
 	public void messengerPrompt()
-			throws java.io.IOException {
-
-		Scanner input1 = new Scanner(System.in);   
-
-		// reading a character   
-		char choice = input1.next().charAt(0);   
-		//prints the character   
+			throws java.io.IOException {  
 
 		System.out.println("Welcome to the messenger. Please select from the options below.\n");
 		System.out.println("[1] Draft a message\n[2] Check messages\n");
+		Scanner input1 = new Scanner(System.in);
+		char choice = input1.next().charAt(0);
+		// char choice = (char) System.in.read();
 		
-		choice = (char) System.in.read();
-		
-		if (choice == '1') {
-			draftMessage();
-		}
-		else {
-		    checkMessages();
+		while (choice != 'Q') {
+			if (choice == '1') {
+				draftMessage();
+			}
+			else {
+				checkMessages();
+			}
 		}
 	}
 	
@@ -134,7 +131,6 @@ public class Messenger {
 	        if (buffer.equals(activeUser.getUsername())) { // Message to user found
 	        	 message message1 = new message();
 	             message1.setRecipient(buffer);
-	             
 	             message1.setID(fileScan.nextLine());
 	             message1.setTitle(fileScan.nextLine());
 	             message1.setBody(fileScan.nextLine());
@@ -149,9 +145,9 @@ public class Messenger {
 	     * Check messages assigned to account.
 	     */
 	    Scanner scan = new Scanner(System.in);
-	    System.out.println("You have " + inbox + " messages.\n");
+	    System.out.println("You have " + inbox + " messages:");
 	    for (message message : messages) {
-	        System.out.println(message.getID() + " - " + message.getTitle() + "\n");
+	        System.out.println(message.getID() + " - " + message.getTitle());
 	    }
 	    
 	    boolean idHit = false;
@@ -161,17 +157,17 @@ public class Messenger {
 		    if (input.equals("Q")) {
 		    	messengerPrompt(); 				// Go back to the messenger
 		    }
-		    else if (input.equals("")) {
+		    else if (input.equals("\n")) {
 		    	continue;						// No entry. Repeat the loop.
 		    }
 	    	for (message message : messages) {
 	    		if (input.equals(message.getID())) {
 	    			System.out.println("\n" + message.getTitle() + "\n\n" + message.getBody() + 
-	    					"\n\nEnter Q to return to inbox:");
+	    					"\n");
 	    			break;
 	    		}
 	    	}
-	    	System.out.println("Invalid ID. Please try again.\n");
+	    	checkMessages();
 	    }
 	}
 }
