@@ -5,7 +5,7 @@ import java.util.Scanner;
  * Runs the home screen of the program
  *
  * @author   Ethan Brown (ewb0020@auburn.edu)
- * @version  28 NOV 21
+ * @version  01 DEC 21
  */
 
 public class HomeScreen {

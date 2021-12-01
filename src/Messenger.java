@@ -14,16 +14,19 @@ import java.io.IOException;
  * Allows users to send and receive messages.
  *
  * @author   Ethan Brown (ewb0020@auburn.edu)
- * @version  29 NOV 21
+ * @version  01 DEC 21
  */
 public class Messenger {
+
+	user activeUser = new user();
 	
 	/*
 	 * Driver for the messenger.
 	 */
 	public void messengerPrompt()
 			throws java.io.IOException {  
-
+		
+		loadUser();
 		System.out.println("\nWelcome to the messenger. Please select from the options below.");
 		System.out.println("[1] Draft a message\n[2] Check messages");
 		// char choice = (char) System.in.read();
@@ -123,8 +126,8 @@ public class Messenger {
 	 */
 	public void checkMessages() throws IOException {
 		//----------Temporary----------
-		user activeUser = new user();
-		activeUser.setUsername("Client1");
+		// user activeUser = new user();
+		// activeUser.setUsername("Client1");
 		//-----------------------------
 		
 		File file = new File("messages.txt");
@@ -132,8 +135,8 @@ public class Messenger {
 	    List<message> messages = new ArrayList<message>();
 
 	    while (fileScan.hasNextLine()) {
-	    	String buffer = fileScan.nextLine(); // Avoid issue of skipping lines
-	        if (buffer.equals(activeUser.getUsername())) { // Message to user found
+	    	String buffer = fileScan.nextLine(); 			// Avoid issue of skipping lines
+	        if (buffer.equals(activeUser.getUsername())) { 	// Message to user found
 	        	 message message1 = new message();
 	             message1.setRecipient(buffer);
 	             message1.setID(fileScan.nextLine());
@@ -173,6 +176,16 @@ public class Messenger {
 	    	}
 	    	checkMessages();
 	    }
+	}
+	
+	public void loadUser() throws FileNotFoundException {
+		File file = new File("activeuser.txt");
+		Scanner fileScan = new Scanner(file);
+		String username = fileScan.nextLine();
+		username = username.replace("\n", "");		// Clears newline
+		activeUser.setUsername(username);
+		System.out.println(activeUser.getUsername());
+		fileScan.close();
 	}
 }
 

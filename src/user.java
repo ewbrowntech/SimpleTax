@@ -12,9 +12,9 @@ public class user {
 	String username;
 	String password;
 	Boolean isAdmin;
-	Double income;
-	Double deductions;
-	Double balance;
+	String income;
+	String deductions;
+	String balance;
 	int[] messages = new int[] {};
 
 
@@ -38,16 +38,28 @@ public class user {
 		this.isAdmin = false;
 	}
 
-	public void setIncome(Double incomeIn) {
+	public void setIncome(String incomeIn) {
 		this.income = incomeIn;
 	}
-
-	public void setDeductions(Double deductionsIn) {
-		this.deductions = deductionsIn;
+	
+	public String getIncome() {
+		return this.income;
 	}
 
-	public void setBalance(Double balanceIn) {
+	public void setDeductions(String deductionsIn) {
+		this.deductions = deductionsIn;
+	}
+	
+	public String getDeductions() {
+		return this.deductions;
+	}
+
+	public void setBalance(String balanceIn) {
 		this.balance = balanceIn;
+	}
+	
+	public String getBalance() {
+		return this.balance;
 	}
 	
 	public void addMessage(int messageIn) {
