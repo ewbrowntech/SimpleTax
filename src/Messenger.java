@@ -24,15 +24,18 @@ public class Messenger {
 	public void messengerPrompt()
 			throws java.io.IOException {  
 
-		System.out.println("Welcome to the messenger. Please select from the options below.\n");
-		System.out.println("[1] Draft a message\n[2] Check messages\n");
-		Scanner input1 = new Scanner(System.in);
-		char choice = input1.next().charAt(0);
+		System.out.println("\nWelcome to the messenger. Please select from the options below.\n");
+		System.out.println("[1] Draft a message\n[2] Check messages");
 		// char choice = (char) System.in.read();
-		
+		char choice = 0;
 		while (choice != 'Q') {
+			Scanner input1 = new Scanner(System.in);
+			choice = (char) System.in.read();
 			if (choice == '1') {
 				draftMessage();
+			}
+			else if (choice == 'Q') {
+				break;
 			}
 			else {
 				checkMessages();
@@ -54,7 +57,7 @@ public class Messenger {
 
 			do {
 				messageInput = "";
-				System.out.println("Enter recipient: ");
+				System.out.println("\nEnter recipient: ");
 				messageInput = input2.nextLine();
 				messageInput = messageInput.replaceAll("\\s", "");		// Clears all whitespace
 				messageInput = messageInput.replace("\n", "");		// Clears newline
