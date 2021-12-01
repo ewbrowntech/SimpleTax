@@ -95,6 +95,8 @@ public class Messenger {
 			} while (messageInput == "");
 			newMessage.setBody(messageInput);
 			newMessage.generateID();
+			System.out.println("Message sent!");
+			messengerPrompt();									// Message written. Return to messenger.	
 			
 			// Stores the message in messages.txt
 			try
@@ -102,7 +104,7 @@ public class Messenger {
 					File file = new File("messages.txt");
 					BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
 					writer.append(newMessage.getRecipient() + "\n");
-					writer.append(newMessage.getID()); // Changes integer ID to string
+					writer.append(newMessage.getID()); 			// Changes integer ID to string
 					writer.append("\n" + newMessage.getTitle() + "\n");
 					writer.append(newMessage.getBody() + "\n\n");
 			        writer.flush();
