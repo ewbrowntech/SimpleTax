@@ -1,0 +1,5 @@
+Username: Client1
+Income: $15000
+Deductions: $5000
+Taxable Income: $10000
+Balance: $3333
