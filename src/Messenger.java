@@ -181,10 +181,11 @@ public class Messenger {
 	        System.out.println(message.getID() + " - " + message.getTitle());
 	    }
 	    
-	    boolean idHit = false;
-	    while (idHit == false) {
+	    boolean idHit = true;
+	    while (idHit == true) {
 		    System.out.println("Enter message ID or Q to exit:");
-		    String input = scan.nextLine();
+		    String input = scan.next();
+		    
 		    if (input.equals("Q")) {
 		    	messengerPrompt(); 				// Go back to the messenger
 		    }
