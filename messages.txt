@@ -1,10 +1,3 @@
------------------------------------------------
-Storage file for messages
-[recipient]
-[id]
-[title]
-[body]
------------------------------------------------
 Client1
 120
 My Message
@@ -49,4 +42,3 @@ Client1
 107
 Test Message
 THis is a test message to user 1
-
