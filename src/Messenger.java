@@ -53,11 +53,14 @@ public class Messenger {
 			throws java.io.IOException {
 
 			String messageInput;
-			Scanner input2 = new Scanner(System.in);
-			input2.nextLine();						// Clears input buffer, was causing first loop to repeat twice
 			message newMessage = new message();
 			Boolean userExists = false;
-
+			Scanner input2 = new Scanner(System.in);
+			input2.nextLine();	// Clears input buffer, was causing first loop to repeat twice
+			
+			/*
+			 * Gets the username of the recipient and checks it against known users.
+			 */
 			do {
 				messageInput = "";
 				System.out.println("\nEnter recipient: ");
@@ -70,12 +73,17 @@ public class Messenger {
 				else if (messageInput.equals("Q")) {
 					break;
 				}
+				checkUsername(messageInput);
 			} while (messageInput == "");
+			
 			if (messageInput.equals("Q")) {
 				messengerPrompt();
 			}
 			newMessage.setRecipient(messageInput);		// If user exists, message will be sent.
 			
+			/*
+			 * Gets the title of the message.
+			 */
 			do {
 				System.out.println("Enter message title: ");
 				messageInput = input2.nextLine();
@@ -84,9 +92,19 @@ public class Messenger {
 				if (messageInput == "") {
 					System.out.println("No input detected. Please try again!");
 				}
+				else if (messageInput.equals("Q")) {
+					break;
+				}
 			} while (messageInput == "");
+			
+			if (messageInput.equals("Q")) {
+				messengerPrompt();
+			}
 			newMessage.setTitle(messageInput);		
 			
+			/*
+			 * Gets the body of the message
+			 */
 			do {
 				System.out.println("Enter your message: ");
 				messageInput = input2.nextLine();
@@ -95,13 +113,21 @@ public class Messenger {
 				if (messageInput == "") {
 					System.out.println("No input detected. Please try again!");
 				}
+				else if (messageInput.equals("Q")) {
+					break;
+				}
 			} while (messageInput == "");
+			if (messageInput.equals("Q")) {
+				messengerPrompt();
+			}
 			newMessage.setBody(messageInput);
 			newMessage.generateID();
 			System.out.println("Message sent!");
-			messengerPrompt();									// Message written. Return to messenger.	
 			
-			// Stores the message in messages.txt
+
+			/*
+			 * Stores the message in messages.txt
+			 */
 			try
 			    {
 					File file = new File("messages.txt");
@@ -117,7 +143,7 @@ public class Messenger {
 			    {
 			        ioException.printStackTrace();
 			    }
-
+			messengerPrompt();									// Message written. Return to messenger.	
 	}
 	
 	/*
@@ -125,11 +151,7 @@ public class Messenger {
 	 * list of message objects.
 	 */
 	public void checkMessages() throws IOException {
-		//----------Temporary----------
-		// user activeUser = new user();
-		// activeUser.setUsername("Client1");
-		//-----------------------------
-		
+
 		File file = new File("messages.txt");
 	    Scanner fileScan = new Scanner(file);
 	    List<message> messages = new ArrayList<message>();
@@ -178,6 +200,9 @@ public class Messenger {
 	    }
 	}
 	
+	/*
+	 * Loads in the active user
+	 */
 	public void loadUser() throws FileNotFoundException {
 		File file = new File("activeuser.txt");
 		Scanner fileScan = new Scanner(file);
@@ -185,6 +210,30 @@ public class Messenger {
 		username = username.replace("\n", "");		// Clears newline
 		activeUser.setUsername(username);
 		fileScan.close();
+	}
+	
+	/*
+	 * Checks to see if a specified user exists.
+	 */
+	public void checkUsername(String username) throws IOException {
+		File file = new File("users.txt");
+		Scanner fileScan = new Scanner(file);
+
+		boolean userExists = false;
+		while (fileScan.hasNextLine()) {
+		    String buffer = fileScan.nextLine(); 		// Avoid issue of skipping lines
+		    if (buffer.equals(username)) {
+		    	userExists = true;
+		     }
+		}
+		if (username.equals(activeUser.getUsername())) {
+			System.out.println("Error: You cannot send a message to youself.");
+			draftMessage();
+		}
+		if (userExists == false) {
+			System.out.println("Error: Invalid username. Please try again.");
+			draftMessage();
+		}
 	}
 }
 
