@@ -1,3 +1,10 @@
+-----------------------------------------------
+Storage file for messages
+[recipient]
+[id]
+[title]
+[body]
+-----------------------------------------------
 Client1
 120
 My Message

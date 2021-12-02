@@ -1,3 +1,10 @@
+-----------------------------------------------
+Storage file for users
+[username]
+[password]
+[income]
+[deductions]
+-----------------------------------------------
 Client1
 client
 15000
