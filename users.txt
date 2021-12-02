@@ -1,10 +1,10 @@
 -------------------------------------------------------------
 Storage file for users
 
-Username
-Password
-Income
-Deductions
+[Username]
+[Password]
+[Income]
+[Deductions]
 -------------------------------------------------------------
 Client1
 client
