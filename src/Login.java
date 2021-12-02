@@ -11,7 +11,7 @@ import java.util.Scanner;
  * Allows for the instantiation of an active user.
  *
  * @author   Ethan Brown (ewb0020@auburn.edu)
- * @version  01 DEC 21
+ * @version  02 DEC 21
  */
 public class Login {
 	
@@ -42,7 +42,13 @@ public class Login {
 		    	activeUser.setPassword(fileScan.nextLine());
 		        activeUser.setIncome(fileScan.nextLine());
 		        activeUser.setDeductions(fileScan.nextLine());
-		        activeUser.setBalance(fileScan.nextLine());
+		        
+		        int taxableIncome = Integer.valueOf(activeUser.getIncome()) // Income after deductions
+						- Integer.valueOf(activeUser.getDeductions());
+		        activeUser.setTaxableIncome(Integer.toString(taxableIncome));
+		        
+		        int balance = Integer.valueOf(activeUser.getTaxableIncome()) / 3;	// Tax rate of 33%
+		        activeUser.setBalance(Integer.toString(balance));
 		     }
 		}
 		if (userExists == false) {
@@ -57,6 +63,7 @@ public class Login {
 				writer.append(activeUser.getUsername() + "\n");
 				writer.append(activeUser.getIncome() + "\n");
 				writer.append(activeUser.getDeductions() + "\n");
+				writer.append(activeUser.getTaxableIncome() + "\n");
 				writer.append(activeUser.getBalance() + "\n");
 				writer.flush();
 				writer.close();

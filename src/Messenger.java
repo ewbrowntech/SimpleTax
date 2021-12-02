@@ -14,11 +14,12 @@ import java.io.IOException;
  * Allows users to send and receive messages.
  *
  * @author   Ethan Brown (ewb0020@auburn.edu)
- * @version  01 DEC 21
+ * @version  02 DEC 21
  */
 public class Messenger {
 
 	User activeUser = new User();
+	HomeScreen h = new HomeScreen();
 	
 	/*
 	 * Driver for the messenger.
@@ -38,7 +39,7 @@ public class Messenger {
 				draftMessage();
 			}
 			else if (choice == 'Q') {
-				break;
+				h.welcomePrompt();
 			}
 			else {
 				checkMessages();

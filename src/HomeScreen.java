@@ -5,7 +5,7 @@ import java.util.Scanner;
  * Runs the home screen of the program
  *
  * @author   Ethan Brown (ewb0020@auburn.edu)
- * @version  01 DEC 21
+ * @version  02 DEC 21
  */
 
 public class HomeScreen {
@@ -14,7 +14,7 @@ public class HomeScreen {
 			throws java.io.IOException {
 					
 			// Welcome and options screen
-			System.out.println("Please select from the options below.");
+			System.out.println("\nPlease select from the options below.");
 			System.out.println("[1] Go to messenger\n"			// Additional functionality to be added
 						+ "[2] Generate tax summary");	// as we code more features
 			
@@ -32,7 +32,7 @@ public class HomeScreen {
 					welcomePrompt();
 				}
 				else if (choice == 'Q') {
-					break;
+					System.exit(0);
 				}
 				else {
 					System.out.println("Please try again!");

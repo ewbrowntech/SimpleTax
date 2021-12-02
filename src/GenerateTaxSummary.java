@@ -11,6 +11,7 @@ import java.util.Scanner;
  * Allows for the instantiation of an active user.
  *
  * @author   Ethan Brown (ewb0020@auburn.edu)
+ * @author	 Gu Zheng
  * @version  01 DEC 21
  */
 public class GenerateTaxSummary {
@@ -29,6 +30,7 @@ public class GenerateTaxSummary {
 			writer.append("Username: " + activeUser.getUsername() + "\n");
 			writer.append("Income: $" + activeUser.getIncome() + "\n");
 			writer.append("Deductions: $" + activeUser.getDeductions() + "\n");
+			writer.append("Taxable Income: $" + activeUser.getTaxableIncome() + "\n");
 			writer.append("Balance: $" + activeUser.getBalance() + "\n");
 			writer.flush();
 			writer.close();
@@ -50,6 +52,7 @@ public class GenerateTaxSummary {
 		activeUser.setUsername(username);
 		activeUser.setIncome(fileScan.nextLine());
 		activeUser.setDeductions(fileScan.nextLine());
+		activeUser.setTaxableIncome(fileScan.nextLine());
 		activeUser.setBalance(fileScan.nextLine());
 		fileScan.close();
 	}

@@ -14,7 +14,7 @@ public class SimpleTax {
 			Login login = new Login();		// Initializes user login.
 			login.loginPrompt();
 			
-			System.out.println("Welcome to SimpleTax!\n");
+			System.out.println("Welcome to SimpleTax!");
 		    HomeScreen h = new HomeScreen();
 		    h.welcomePrompt();				// Calls up the homescreen, with its options
 		    System.exit(0);

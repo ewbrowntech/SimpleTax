@@ -14,6 +14,7 @@ public class User {
 	Boolean isAdmin;
 	String income;
 	String deductions;
+	String taxableIncome;
 	String balance;
 	int[] messages = new int[] {};
 
@@ -54,6 +55,14 @@ public class User {
 		return this.deductions;
 	}
 
+	public void setTaxableIncome(String incomeIn) {
+		this.taxableIncome = incomeIn;
+	}
+	
+	public String getTaxableIncome() {
+		return this.taxableIncome;
+	}
+	
 	public void setBalance(String balanceIn) {
 		this.balance = balanceIn;
 	}
